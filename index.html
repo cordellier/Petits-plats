@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <!-- Définition de l'encodage -->
+    <meta charset="utf-8">
+    <!-- Optimisation mobile -->
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <!-- Compatibilité avec Edge -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Feuille de style CSS -->
+    <link href="assets/style/index.css" rel="stylesheet">
+    <!-- Préchargement de l'image LCP avec une priorité élevée pour qu'elle commence à charger avec la feuille de style. -->
+
+    <title>Les petits plats</title>
+</head>
+
+<body>
+    
+    <!-- **HEADER  -->
+    <header class="header">
+        <!-- Logo -->
+        <div class="header__logo">
+            <img src="./Assets/img/pictures/Logo.png" alt="logo">
+        </div>
+        <!-- Titre -->
+        <h1 class="header__title" id="header-title">Cherchez parmi plus de 1500 recettes du quotidien, simples et délicieuses</h1>
+        <!-- Barre de recherche -->
+        <div class="header__search-container input-container flex-row">
+            <label for="header-search" class="visually-hidden">Rechercher une recette</label>
+            <input type="text" id="header-search" name="header-search" class="input"
+                placeholder="Rechercher une recette, un ingrédient, ...">
+            <div class='header-cross'>
+                <button id="empty-filter-header-search" class="empty-input-button">
+                    <img src="./Assets/img/Icon/closeSearch.svg" alt="supprimer la recherche">
+                </button>
+            </div>
+            <button type="submit" class="header__search-bar-submit">
+                <img src="./Assets/img/Icon/search.svg" alt="icone de recherche">
+            </button>
+        </div>
+    </header>
+    
+    
+    <main class="container__dropdown">
+
+        <!-- **FILTRE  -->
+        <div class="dropdwon flex-row" role="region" aria-label="Filtres">
+            <div class="filters__container flex-row">
+                <!-- Bouton pour afficher tous les filtres via JavaScript -->
+            </div>
+            <div class="dropdown__total-recipes">
+                <!-- Affichage via JavaScript -->
+            </div>
+        </div>
+        <div id="tags" class="tags">
+            <ul class="tags__list flex-row" aria-label="Filtres sélectionnés">
+            </ul>
+        </div>
+
+        <!-- **CARTE DE RECETTES  -->
+        <div class="recipes" id="recipes" role="region" aria-label="Recettes">
+            <!-- Toutes les cartes de recettes sont affichées via JavaScript -->
+        </div>
+    </main>
+    <!-- Type module permettant l'import/export dans un fichier JavaScript -->
+    <script type="module" src="./Javascript/pages/index.js"></script>
+</body>
+
+</html>

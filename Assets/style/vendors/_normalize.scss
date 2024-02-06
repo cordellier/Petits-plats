@@ -1,0 +1,45 @@
+//** NORMALIZE */
+
+/**
+Supprimer la marge par défaut
+*/
+body,
+h1,
+h2,
+h3,
+p,
+ul {
+  margin: 0;
+}
+
+/**
+Supprimer la propriété par défaut de la liste
+*/
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+/**
+Supprimer la propriété par défaut du bouton
+*/
+button {
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+/**
+Supprimer la propriété par défaut de l'input
+*/
+input {
+  padding: 0;
+}
+
+/* Supprimer la croix de recherche de Chrome lors de la saisie */
+input[type='search']::-webkit-search-decoration,
+input[type='search']::-webkit-search-cancel-button,
+input[type='search']::-webkit-search-results-button,
+input[type='search']::-webkit-search-results-decoration {
+  display: none;
+}

@@ -1,0 +1,33 @@
+/***************************** HELPERS *****************************/
+.flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
+/**
+ * Hide element while making it readable for screen readers
+ */
+.visually-hidden {
+  border: 0;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+/* animations */
+@keyframes apparition {
+  0% {
+    opacity: 0;
+  }
+  99% {
+    opacity: 1;
+  }
+}

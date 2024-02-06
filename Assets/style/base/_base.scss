@@ -1,0 +1,35 @@
+/***************************** BASE *****************************/
+/**
+ * Set up a decent box model on the root element
+ */
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  background-color: $bg-principal-color;
+  max-width: 1440px;
+  margin: auto;
+}
+main {
+  // gap: 55px;
+  padding: 17px 102px 201px;
+}
+
+@media screen and (max-width: 500px) {
+  main {
+    padding: 17px 50px 100px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  main {
+    padding: 17px 20px 100px;
+  }
+}
