@@ -46,7 +46,6 @@ input[type=search]::-webkit-search-results-decoration {
 }
 
 /* base */
-/***************************** IMPORTATIONS *****************************/
 /***************************** BASE *****************************/
 /**
  * Set up a decent box model on the root element
@@ -316,6 +315,195 @@ button {
 @media screen and (max-width: 560px) {
   .header__search-container {
     width: 90%;
+  }
+}
+.filters {
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+.filters__container {
+  gap: 64px;
+}
+.filters__total-recipes {
+  -ms-flex-item-align: center;
+      align-self: center;
+}
+
+@media screen and (max-width: 1024px) {
+  .filters {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    gap: 25px;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  .filters__container {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    gap: 25px;
+  }
+}
+.filter__container {
+  background-color: #ffffff;
+  border-radius: 11px;
+  position: relative;
+}
+.filter__button {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  cursor: pointer;
+  gap: 63px;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 17px 16px;
+}
+.filter__list-container {
+  background-color: #ffffff;
+  border-radius: 0 0 11px 11px;
+  display: none;
+  margin-top: -8px;
+  overflow-y: hidden;
+  position: absolute;
+  z-index: 2;
+}
+.filter__list-container .filter__input-container {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border: 0.5px solid #c6c6c6;
+  border-radius: 2px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  margin: 5px 16px 24px;
+  position: relative;
+  padding-right: 5px;
+}
+.filter__list-container .filter__input-container .input {
+  height: 35px;
+  padding-left: 10px;
+  width: 75%;
+}
+.filter__list-container--open {
+  -webkit-animation: openList forwards 0.3s;
+          animation: openList forwards 0.3s;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-transform-origin: top;
+          transform-origin: top;
+  z-index: 1;
+}
+.filter__list-container--close {
+  -webkit-animation: closeList forwards 0.3s;
+          animation: closeList forwards 0.3s;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-transform-origin: top;
+          transform-origin: top;
+}
+.filter__list-items {
+  gap: 13px;
+  max-height: 200px;
+  overflow: auto;
+  padding: 0 16px 15px;
+  width: 100%;
+}
+.filter__magnifier-svg {
+  padding-bottom: 5px;
+  position: relative;
+}
+.filter--open .filter__arrow {
+  -webkit-animation: arrowChange forwards 0.2s;
+          animation: arrowChange forwards 0.2s;
+}
+
+@-webkit-keyframes arrowChange {
+  0% {
+    opacity: 1;
+  }
+  10% {
+    opacity: 0;
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  50% {
+    opacity: 0;
+    -webkit-transform: rotate(180deg);
+            transform: rotate(180deg);
+  }
+  60% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: rotate(180deg);
+            transform: rotate(180deg);
+  }
+}
+
+@keyframes arrowChange {
+  0% {
+    opacity: 1;
+  }
+  10% {
+    opacity: 0;
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  50% {
+    opacity: 0;
+    -webkit-transform: rotate(180deg);
+            transform: rotate(180deg);
+  }
+  60% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: rotate(180deg);
+            transform: rotate(180deg);
+  }
+}
+@-webkit-keyframes openList {
+  from {
+    max-height: 0;
+  }
+  to {
+    max-height: 250px;
+  }
+}
+@keyframes openList {
+  from {
+    max-height: 0;
+  }
+  to {
+    max-height: 250px;
+  }
+}
+@-webkit-keyframes closeList {
+  from {
+    max-height: 250px;
+  }
+  to {
+    max-height: 0;
+  }
+}
+@keyframes closeList {
+  from {
+    max-height: 250px;
+  }
+  to {
+    max-height: 0;
   }
 }
 .recipe-card {
