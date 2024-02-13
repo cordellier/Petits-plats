@@ -2,8 +2,9 @@
 
 import { ApiRecipes } from "../Api/ApiRecipes.js";
 import { Recipe } from "../Data/data.js";
-import { RenderRecipeCard } from "../View/RenderRecipeUI.js";
-import { displaySingleFilter } from "../View/RenderFilterUI.js";
+import { RenderRecipeCard } from "../View/renderRecipeUI.js";
+import { DisplayFilterDOM } from "../View/renderFilterUI.js";
+import { manageFilters } from "../utils/filters.js";
 
 /*
 Exécutée lorsque la page est chargée
@@ -17,14 +18,14 @@ Fonction qui récupère la div contenant toutes les recettes et les affichent
 @param {Array} recipes
 @param {string} inputText
 */
-const RenderRecipes = (recipes, inputText) => {
+const renderRecipes = (recipes, inputText) => {
   const recipesContainer = document.getElementById("recipes");
   recipesContainer.innerHTML = "";
 
   if (!Array.isArray(recipes) || recipes.length === 0) {
     recipesContainer.className = "recipes--not-found";
     const recipesNotFoundDOM = document.createElement("p");
-    recipesNotFoundDOM.textContent = `Aucune recette ne contient '${inputText}', vous pouvez chercher « tarte aux pommes », « poisson », etc.`;
+    recipesNotFoundDOM.textContent = `Aucune recette ne contient '${inputText}', vous pouvez chercher « Tartellettes au chocolat et aux fraises », « poulet », etc.`;
     recipesContainer.appendChild(recipesNotFoundDOM);
   } else {
     recipesContainer.className = "recipes";
@@ -37,17 +38,64 @@ const RenderRecipes = (recipes, inputText) => {
 };
 
 /**
+ * Fonction qui renomme le titre d'un filtre en fonction de son type
+ * @param {string} nameOfFilter - Le type de filtre à renommer
+ * @returns {Object|string} - Objet contenant le nom du filtre et son placeholder, ou une chaîne vide si le type de filtre n'est pas reconnu
+ */
+const renameTitle = (nameOfFilter) => {
+  switch (nameOfFilter) {
+    case "ingredients":
+      return {
+        filter: nameOfFilter,
+        placeHolder: "Ingrédients",
+      };
+    case "appliances":
+      return {
+        filter: nameOfFilter,
+        placeHolder: "Appareils",
+      };
+    case "ustensils":
+      return {
+        filter: nameOfFilter,
+        placeHolder: "Ustensiles",
+      };
+    default:
+      return "";
+  }
+};
+
+/**
  * Affiche tous les filtres dans le DOM
  * @param {Array} recipes - Tableau de recettes
  */
 const displayAllFilters = (recipes) => {
   const filtersContainer = document.querySelector(".filters__container");
   const filters = ["ingredients", "appliances", "ustensils"];
-  filters.forEach((filter) => {
-    const filterDOM = displaySingleFilter(filter);
-    filtersContainer.appendChild(filterDOM);
-  });
+  filters
+    .map((item) => renameTitle(item))
+    .forEach((filter) => {
+      const filterDOM = DisplayFilterDOM(filter);
+      filtersContainer.appendChild(filterDOM);
+    });
   manageFilters(recipes, recipes);
+};
+
+/**
+ * display total numbers of recipes found
+ * @param {Array} recipes
+ */
+const renderTotalRecipes = (recipes) => {
+  const numberTotalRecipesDOM = document.querySelector(
+    ".filters__total-recipes"
+  );
+  const numberTotalRecipes = recipes.length;
+  if (numberTotalRecipes < 10) {
+    numberTotalRecipesDOM.textContent = `0${numberTotalRecipes} recettes`;
+  } else if (numberTotalRecipes <= 1) {
+    numberTotalRecipesDOM.textContent = `0${numberTotalRecipes} recette`;
+  } else {
+    numberTotalRecipesDOM.textContent = `${numberTotalRecipes} recettes`;
+  }
 };
 
 /**
@@ -56,8 +104,9 @@ Fonction appelée lors du chargement, récupère les données de la base de donn
 const init = () => {
   const datasRecipes = ApiRecipes();
   const { recipes } = datasRecipes.getRecipes();
-  RenderRecipes(recipes);
+  renderRecipes(recipes);
+  displayAllFilters(recipes);
+  renderTotalRecipes(recipes);
 };
 
-export { RenderRecipes };
-export { displayAllFilters as displayFilter };
+export { renderRecipes, renderTotalRecipes };

@@ -1,4 +1,4 @@
-//**Liaison avec la base de données */
+//**LIAISON AVEC LA BASE DE DONNEES */
 
 import { recipes } from "../Data/Recipes.js";
 

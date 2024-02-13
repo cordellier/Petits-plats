@@ -1,13 +1,16 @@
-//**STYLE DES FILTRES*/
+/* STYLE DES FILTRES */
 
 .filters {
+  display: flex;
   justify-content: space-between;
-  &__container {
-    gap: 64px;
-  }
-  &__total-recipes {
-    align-self: center;
-  }
+}
+
+.filters__container {
+  gap: 64px;
+}
+
+.filters__total-recipes {
+  align-self: center;
 }
 
 @media screen and (max-width: 1024px) {
@@ -15,117 +18,103 @@
     flex-direction: column;
     gap: 25px;
     align-items: center;
-    &__container {
-      flex-direction: column;
-      gap: 25px;
-    }
+  }
+
+  .filters__container {
+    flex-direction: column;
+    gap: 25px;
   }
 }
 
+.filter__container {
+  background-color: $bg-second-color;
+  border-radius: 12px;
+  position: relative;
+}
 
-.filter {
-    &__container {
-      background-color: $bg-second-color;
-      border-radius: 11px;
-      position: relative;
-    }
-    &__button {
-      align-items: center;
-      cursor: pointer;
-      gap: 63px;
-      justify-content: space-between;
-      padding: 17px 16px;
-    }
-  
-    &__list-container {
-      background-color: $bg-second-color;
-      border-radius: 0 0 11px 11px;
-      display: none;
-      margin-top: -8px;
-      overflow-y: hidden;
-      position: absolute;
-      z-index: 2;
-      .filter__input-container {
-        align-items: center;
-        border: 0.5px solid $lightGrey;
-        border-radius: 2px;
-        height: fit-content;
-        margin: 5px 16px 24px;
-        position: relative;
-        padding-right: 5px;
-        .input {
-          height: 35px;
-          padding-left: 10px;
-          width: 75%;
-        }
-      }
-      &--open {
-        animation: openList forwards 0.3s;
-        display: flex;
-        transform-origin: top;
-        z-index: 1;
-      }
-      &--close {
-        animation: closeList forwards 0.3s;
-        display: flex;
-        transform-origin: top;
-      }
-    }
-    &__list-items {
-      gap: 13px;
-      max-height: 200px;
-      overflow: auto;
-      padding: 0 16px 15px;
-      width: 100%;
-    }
-    &__magnifier-svg {
-      padding-bottom: 5px;
-      position: relative;
-    }
-    &--open {
-      .filter__arrow {
-        animation: arrowChange forwards 0.2s;
-      }
-    }
+.filter__button {
+  align-items: center;
+  cursor: pointer;
+  gap: 63px;
+  justify-content: space-between;
+  padding: 17px 16px;
+}
+
+.filter__list-container {
+  background-color: $bg-second-color;
+  border-radius: 0 0 11px 11px;
+  display: none;
+  margin-top: -8px;
+  overflow-y: hidden;
+  position: absolute;
+  z-index: 2;
+}
+
+.filter__list-container--open {
+  animation: openList forwards 0.3s;
+  display: flex;
+  transform-origin: top;
+  z-index: 1;
+}
+
+.filter__list-container--close {
+  animation: closeList forwards 0.3s;
+  display: flex;
+  transform-origin: top;
+}
+
+.filter__input-container {
+  align-items: center;
+  border: 0.5px solid $lightGrey;
+  border-radius: 2px;
+  height: fit-content;
+  margin: 5px 16px 24px;
+  position: relative;
+  padding-right: 5px;
+}
+
+.filter__input {
+  height: 35px;
+  padding-left: 10px;
+  width: 75%;
+}
+
+.filter__list-items {
+  gap: 13px;
+  max-height: 200px;
+  overflow: auto;
+  padding: 0 16px 15px;
+  width: 100%;
+}
+
+.filter__magnifier-svg {
+  padding-bottom: 5px;
+  position: relative;
+}
+
+.filter__open {
+  .filter__arrow {
+    animation: arrowChange forwards 0.2s;
   }
-  
-  @keyframes arrowChange {
-    0% {
-      opacity: 1;
-    }
-    10% {
-      opacity: 0;
-      transform: rotate(0deg);
-    }
-    50% {
-      opacity: 0;
-      transform: rotate(180deg);
-    }
-    60% {
-      opacity: 1;
-    }
-    100% {
-      opacity: 1;
-      transform: rotate(180deg);
-    }
+}
+
+@keyframes arrowChange {
+  0% {
+    opacity: 1;
   }
-  
-  @keyframes openList {
-    from {
-      max-height: 0;
-    }
-    to {
-      max-height: 250px;
-    }
+  10% {
+    opacity: 0;
+    transform: rotate(0deg);
   }
-  
-  @keyframes closeList {
-    from {
-      max-height: 250px;
-    }
-    to {
-      // display: none;
-      max-height: 0;
-    }
+  50% {
+    opacity: 0;
+    transform: rotate(180deg);
   }
-  
+  60% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+    transform: rotate(180deg);
+  }
+}

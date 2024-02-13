@@ -11,6 +11,10 @@ h3,
 p,
 ul {
   margin: 0;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 
 /**
@@ -317,14 +321,21 @@ button {
     width: 90%;
   }
 }
+/* Compenents */
+/* STYLE DES FILTRES */
 .filters {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
 }
+
 .filters__container {
   gap: 64px;
 }
+
 .filters__total-recipes {
   -ms-flex-item-align: center;
       align-self: center;
@@ -351,9 +362,10 @@ button {
 }
 .filter__container {
   background-color: #ffffff;
-  border-radius: 11px;
+  border-radius: 12px;
   position: relative;
 }
+
 .filter__button {
   -webkit-box-align: center;
       -ms-flex-align: center;
@@ -365,6 +377,7 @@ button {
           justify-content: space-between;
   padding: 17px 16px;
 }
+
 .filter__list-container {
   background-color: #ffffff;
   border-radius: 0 0 11px 11px;
@@ -374,7 +387,29 @@ button {
   position: absolute;
   z-index: 2;
 }
-.filter__list-container .filter__input-container {
+
+.filter__list-container--open {
+  -webkit-animation: openList forwards 0.3s;
+          animation: openList forwards 0.3s;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-transform-origin: top;
+          transform-origin: top;
+  z-index: 1;
+}
+
+.filter__list-container--close {
+  -webkit-animation: closeList forwards 0.3s;
+          animation: closeList forwards 0.3s;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-transform-origin: top;
+          transform-origin: top;
+}
+
+.filter__input-container {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -387,30 +422,13 @@ button {
   position: relative;
   padding-right: 5px;
 }
-.filter__list-container .filter__input-container .input {
+
+.filter__input {
   height: 35px;
   padding-left: 10px;
   width: 75%;
 }
-.filter__list-container--open {
-  -webkit-animation: openList forwards 0.3s;
-          animation: openList forwards 0.3s;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-transform-origin: top;
-          transform-origin: top;
-  z-index: 1;
-}
-.filter__list-container--close {
-  -webkit-animation: closeList forwards 0.3s;
-          animation: closeList forwards 0.3s;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-transform-origin: top;
-          transform-origin: top;
-}
+
 .filter__list-items {
   gap: 13px;
   max-height: 200px;
@@ -418,11 +436,13 @@ button {
   padding: 0 16px 15px;
   width: 100%;
 }
+
 .filter__magnifier-svg {
   padding-bottom: 5px;
   position: relative;
 }
-.filter--open .filter__arrow {
+
+.filter__open .filter__arrow {
   -webkit-animation: arrowChange forwards 0.2s;
           animation: arrowChange forwards 0.2s;
 }
@@ -472,38 +492,6 @@ button {
     opacity: 1;
     -webkit-transform: rotate(180deg);
             transform: rotate(180deg);
-  }
-}
-@-webkit-keyframes openList {
-  from {
-    max-height: 0;
-  }
-  to {
-    max-height: 250px;
-  }
-}
-@keyframes openList {
-  from {
-    max-height: 0;
-  }
-  to {
-    max-height: 250px;
-  }
-}
-@-webkit-keyframes closeList {
-  from {
-    max-height: 250px;
-  }
-  to {
-    max-height: 0;
-  }
-}
-@keyframes closeList {
-  from {
-    max-height: 250px;
-  }
-  to {
-    max-height: 0;
   }
 }
 .recipe-card {
@@ -573,5 +561,70 @@ button {
 @media screen and (max-width: 955px) {
   .recipes {
     grid-template-columns: repeat(1, 1fr);
+  }
+}
+.tag {
+  -webkit-animation: apparition 500ms forwards;
+          animation: apparition 500ms forwards;
+  background-color: #ffd15b;
+  border-radius: 10px;
+  gap: 60px;
+  padding: 17px 18px;
+}
+.tag button {
+  cursor: pointer;
+}
+
+.tags {
+  -webkit-animation: tagsDisparition 500ms forwards;
+          animation: tagsDisparition 500ms forwards;
+  height: 55px;
+}
+.tags--activate {
+  -webkit-animation: tagsApparition 500ms forwards;
+          animation: tagsApparition 500ms forwards;
+  height: auto;
+  padding: 21px 0 0;
+  -webkit-transform-origin: top;
+          transform-origin: top;
+}
+.tags__list {
+  gap: 15px;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  max-width: 100%;
+}
+
+@-webkit-keyframes tagsApparition {
+  0% {
+    padding-bottom: 0;
+  }
+  100% {
+    padding-bottom: 43px;
+  }
+}
+
+@keyframes tagsApparition {
+  0% {
+    padding-bottom: 0;
+  }
+  100% {
+    padding-bottom: 43px;
+  }
+}
+@-webkit-keyframes tagsDisparition {
+  0% {
+    height: 98px;
+  }
+  100% {
+    height: 55px;
+  }
+}
+@keyframes tagsDisparition {
+  0% {
+    height: 98px;
+  }
+  100% {
+    height: 55px;
   }
 }/*# sourceMappingURL=index.css.map */
