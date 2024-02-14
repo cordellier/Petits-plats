@@ -14,15 +14,10 @@
 }
 
 @media screen and (max-width: 1024px) {
-  .filters {
+  .filters, .filters__container {
     flex-direction: column;
     gap: 25px;
     align-items: center;
-  }
-
-  .filters__container {
-    flex-direction: column;
-    gap: 25px;
   }
 }
 
@@ -50,17 +45,14 @@
   z-index: 2;
 }
 
-.filter__list-container--open {
+.filter__list-container--open{
   animation: openList forwards 0.3s;
   display: flex;
   transform-origin: top;
-  z-index: 1;
 }
 
 .filter__list-container--close {
-  animation: closeList forwards 0.3s;
-  display: flex;
-  transform-origin: top;
+  z-index: 1;
 }
 
 .filter__input-container {
@@ -68,7 +60,7 @@
   border: 0.5px solid $lightGrey;
   border-radius: 2px;
   height: fit-content;
-  margin: 5px 16px 24px;
+  margin: 5px 8px 10px;
   position: relative;
   padding-right: 5px;
 }
@@ -87,34 +79,53 @@
   width: 100%;
 }
 
+.filter__list-items li:hover {
+  cursor: pointer;
+  background-color: $yellow;
+}
+
+.input-container .cross-svg {
+  width: 20px;
+}
+
 .filter__magnifier-svg {
   padding-bottom: 5px;
   position: relative;
 }
 
-.filter__open {
-  .filter__arrow {
-    animation: arrowChange forwards 0.2s;
-  }
+.filter__open .filter__arrow {
+  animation: arrowChange forwards 0.2s;
+}
+
+#filter-search-ustensiles,
+#filter-search-appliances,
+#filter-search-ingredients {
+  border : none;
+}
+
+.filter__list-items li:before {
+    content: ""; 
+    position: absolute;
+    top: -10px; 
+    bottom: -10px; 
+    width: 200px;
+    left: 0;
+    right: 0;
+    background: $yellow;
+    z-index: -1; 
+    opacity: 0; 
+    transition: opacity 0.1s linear; 
 }
 
 @keyframes arrowChange {
-  0% {
+  0%, 60%, 100% {
     opacity: 1;
   }
-  10% {
+  10%, 50% {
     opacity: 0;
     transform: rotate(0deg);
   }
-  50% {
-    opacity: 0;
-    transform: rotate(180deg);
-  }
-  60% {
-    opacity: 1;
-  }
   100% {
-    opacity: 1;
     transform: rotate(180deg);
   }
 }

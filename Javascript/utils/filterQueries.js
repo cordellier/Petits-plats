@@ -36,7 +36,7 @@ const filtersQueries = (recipes, filterValue, filterBy) => {
   return filteredRecipes;
 };
 
-// **FILTRES AVANCE POUR LES TAGS */
+// **FILTRES AVANCES POUR LES TAGS */
 
 /**
  * Obtient tous les éléments (ingrédients, appareils, ustensiles, ...) des recettes
@@ -46,15 +46,14 @@ const filtersQueries = (recipes, filterValue, filterBy) => {
  */
 const getRecipesElements = (recipesList, filterBy) => {
   let elementList = [];
+  let formattedElement;
+
   recipesList.forEach((recipe) => {
     if (filterBy === "ingredients" || filterBy === "ustensils") {
       recipe[filterBy].forEach((element) => {
-        let formattedElement;
         if (filterBy === "ingredients") {
-          // prévenir la sensibilité à la casse
           formattedElement = firstLetter(element.ingredient.toLowerCase());
         } else {
-          // prévenir la sensibilité à la casse
           formattedElement = firstLetter(element.toLowerCase());
         }
         if (!elementList.includes(formattedElement)) {
@@ -62,13 +61,13 @@ const getRecipesElements = (recipesList, filterBy) => {
         }
       });
     } else if (filterBy === "appliances") {
-      // prévenir la sensibilité à la casse
       const formattedAppliance = firstLetter(recipe.appliance.toLowerCase());
       if (!elementList.includes(formattedAppliance)) {
         elementList.push(formattedAppliance);
       }
     }
   });
+
   elementList.sort((a, b) => a.localeCompare(b));
   return elementList;
 };

@@ -1,14 +1,17 @@
-//**GESTION DES FILTRES */
-
+// Import des modules nécessaires
 import { DisplayFilterDOM } from "../View/renderFilterUI.js";
 import { filtersQueries, getRecipesElements } from "./filterQueries.js";
 import { renderTotalRecipes, renderRecipes } from "../pages/index.js";
 import { renderTag } from "../View/RenderTagUI.js";
 import { manageTags } from "./tagInput.js";
 
+// Déclaration des variables à l'extérieur de la fonction
+let filterIngredientsDatas;
+let filterAppliancesDatas;
+let filterUstensilsDatas;
+
 /**
  * Gère les filtres en fonction de la liste des recettes (filtrées ou non)
- * @param {Array} allRecipes - Toutes les recettes
  * @param {Array} filteredRecipes - Recettes filtrées
  */
 const manageFilters = (filteredRecipes) => {
@@ -19,15 +22,12 @@ const manageFilters = (filteredRecipes) => {
   const filterIngredientsList = document.getElementById("ingredients-list");
   const filterAppliancesList = document.getElementById("appliances-list");
   const filterUstensilsList = document.getElementById("ustensils-list");
-  const filterIngredientsDatas = getRecipesElements(
-    filteredRecipes,
-    "ingredients"
-  );
-  const filterAppliancesDatas = getRecipesElements(
-    filteredRecipes,
-    "appliances"
-  );
-  const filterUstensilsDatas = getRecipesElements(filteredRecipes, "ustensils");
+
+  // Initialisation des variables à l'intérieur de la fonction
+  filterIngredientsDatas = getRecipesElements(filteredRecipes, "ingredients");
+  filterAppliancesDatas = getRecipesElements(filteredRecipes, "appliances");
+  filterUstensilsDatas = getRecipesElements(filteredRecipes, "ustensils");
+
   const filters = [
     {
       name: "ingredients",
@@ -245,6 +245,11 @@ const manageFilters = (filteredRecipes) => {
   });
 };
 
+/**
+ * Ferme tous les filtres
+ * @param {NodeList} filtersButtons - Liste des boutons des filtres
+ * @param {NodeList} filtersListDOM - Liste des conteneurs de listes de filtres
+ */
 const closeAllFilters = (filtersButtons, filtersListDOM) => {
   filtersButtons.forEach((button) => {
     button.classList.remove("filter--open");
