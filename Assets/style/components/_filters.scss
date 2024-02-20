@@ -44,7 +44,22 @@
   overflow-y: hidden;
   position: absolute;
   z-index: 2;
+  .filter__input-container {
+    align-items: center;
+    border: 0.5px solid $lightGrey;
+    border-radius: 2px;
+    height: fit-content;
+    margin: 5px 16px 24px;
+    position: relative;
+    padding-right: 5px;
+    .input {
+      height: 35px;
+      padding-left: 10px;
+      width: 75%;
+    }
+  }
 }
+
 
 .filter__list-container--open{
   animation: openList forwards 0.3s;
@@ -87,6 +102,7 @@
 .filter__list-items li:hover {
   cursor: pointer;
   background-color: $yellow;
+  height: 100px;
 }
 
 .input-container .header-cross {

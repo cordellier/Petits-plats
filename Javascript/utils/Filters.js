@@ -1,6 +1,6 @@
 // Import des modules nécessaires
 import { filtersQueries, getRecipesElements } from "./filterQueries.js";
-import { renderTotalRecipes, renderRecipes } from "../pages/index.js";
+// import { renderTotalRecipes, renderRecipes } from "../pages/Index.js";
 import { renderTag } from "../View/renderTagUI.js";
 import { manageTags } from "./tagInput.js";
 

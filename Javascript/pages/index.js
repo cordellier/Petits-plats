@@ -5,7 +5,7 @@ import { Recipe } from "../Data/data.js";
 import { RenderRecipeCard } from "../View/renderRecipeUI.js";
 import { DisplayFilterDOM } from "../View/renderFilterUI.js";
 import { manageFilters } from "../utils/filters.js";
-import { manageSearch } from "../utils/SearchInput.js";
+// import { manageSearch } from "../utils/SearchInput.js";
 
 /*
 Exécutée lorsque la page est chargée
@@ -78,24 +78,22 @@ const displayAllFilters = (recipes) => {
       const filterDOM = DisplayFilterDOM(filter);
       filtersContainer.appendChild(filterDOM);
     });
-  manageFilters(recipes, recipes);
+  manageFilters(recipes);
 };
 
 /**
- * display total numbers of recipes found
- * @param {Array} recipes
- */
+Afficher le nombre total de recettes trouvées
+@param {Array} recettes
+*/
 const renderTotalRecipes = (recipes) => {
-  const numberTotalRecipesDOM = document.querySelector(
-    ".filters__total-recipes"
-  );
-  const numberTotalRecipes = recipes.length;
-  if (numberTotalRecipes < 10) {
-    numberTotalRecipesDOM.textContent = `0${numberTotalRecipes} recettes`;
-  } else if (numberTotalRecipes <= 1) {
-    numberTotalRecipesDOM.textContent = `0${numberTotalRecipes} recette`;
+  const TotalRecipesDOM = document.querySelector(".filters__total-recipes");
+  const TotalRecipes = recipes.length;
+  if (TotalRecipes < 10) {
+    TotalRecipesDOM.textContent = `0${TotalRecipes} recettes`;
+  } else if (TotalRecipes <= 1) {
+    TotalRecipesDOM.textContent = `0${TotalRecipes} recette`;
   } else {
-    numberTotalRecipesDOM.textContent = `${numberTotalRecipes} recettes`;
+    TotalRecipesDOM.textContent = `${TotalRecipes} recettes`;
   }
 };
 
@@ -107,7 +105,7 @@ const init = () => {
   const { recipes } = datasRecipes.getRecipes();
   renderRecipes(recipes);
   displayAllFilters(recipes);
-  manageSearch(recipes, recipes);
+  // manageSearch(recipes, recipes);
   renderTotalRecipes(recipes);
 };
 

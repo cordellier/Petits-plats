@@ -382,6 +382,24 @@ button {
   position: absolute;
   z-index: 2;
 }
+.filter__list-container .filter__input-container {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border: 0.5px solid #c6c6c6;
+  border-radius: 2px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  margin: 5px 16px 24px;
+  position: relative;
+  padding-right: 5px;
+}
+.filter__list-container .filter__input-container .input {
+  height: 35px;
+  padding-left: 10px;
+  width: 75%;
+}
 
 .filter__list-container--open {
   -webkit-animation: openList forwards 0.3s;
@@ -432,6 +450,7 @@ button {
 .filter__list-items li:hover {
   cursor: pointer;
   background-color: #ffd15b;
+  height: 100px;
 }
 
 .input-container .header-cross {
