@@ -1,5 +1,8 @@
 //** STYLE DE LA PAGE INDEX */
 
+/* Configurations */
+@import "./abstract/mixins";
+
 /* vendors */
 @import "./vendors/normalize";
 
@@ -15,5 +18,6 @@
 
 /* Compenents */
 @import "./components/filters";
+@import "./components/form";
 @import "./components/recipes";
 @import "./components/tag";

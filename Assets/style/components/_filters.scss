@@ -32,7 +32,8 @@
   cursor: pointer;
   gap: 63px;
   justify-content: space-between;
-  padding: 17px 16px;
+  padding: 20px 16px;
+  border-radius: 12px;
 }
 
 .filter__list-container {
@@ -65,6 +66,10 @@
   padding-right: 5px;
 }
 
+#filter-search-ustensils{
+  border: none;
+}
+
 .filter__input {
   height: 35px;
   padding-left: 10px;
@@ -84,8 +89,12 @@
   background-color: $yellow;
 }
 
-.input-container .cross-svg {
+.input-container .header-cross {
   width: 20px;
+}
+
+.header-cross img {
+  width: 30px;
 }
 
 .filter__magnifier-svg {
@@ -103,19 +112,6 @@
   border : none;
 }
 
-.filter__list-items li:before {
-    content: ""; 
-    position: absolute;
-    top: -10px; 
-    bottom: -10px; 
-    width: 200px;
-    left: 0;
-    right: 0;
-    background: $yellow;
-    z-index: -1; 
-    opacity: 0; 
-    transition: opacity 0.1s linear; 
-}
 
 @keyframes arrowChange {
   0%, 60%, 100% {

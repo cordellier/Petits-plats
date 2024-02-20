@@ -5,6 +5,7 @@ import { Recipe } from "../Data/data.js";
 import { RenderRecipeCard } from "../View/renderRecipeUI.js";
 import { DisplayFilterDOM } from "../View/renderFilterUI.js";
 import { manageFilters } from "../utils/filters.js";
+import { manageSearch } from "../utils/SearchInput.js";
 
 /*
 Exécutée lorsque la page est chargée
@@ -106,6 +107,7 @@ const init = () => {
   const { recipes } = datasRecipes.getRecipes();
   renderRecipes(recipes);
   displayAllFilters(recipes);
+  manageSearch(recipes, recipes);
   renderTotalRecipes(recipes);
 };
 

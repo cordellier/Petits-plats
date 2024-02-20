@@ -1,8 +1,7 @@
 // Import des modules nécessaires
-import { DisplayFilterDOM } from "../View/renderFilterUI.js";
 import { filtersQueries, getRecipesElements } from "./filterQueries.js";
 import { renderTotalRecipes, renderRecipes } from "../pages/index.js";
-import { renderTag } from "../View/RenderTagUI.js";
+import { renderTag } from "../View/renderTagUI.js";
 import { manageTags } from "./tagInput.js";
 
 // Déclaration des variables à l'extérieur de la fonction
@@ -48,13 +47,6 @@ const manageFilters = (filteredRecipes) => {
       datas: filterUstensilsDatas,
     },
   ];
-
-  // Ajout des filtres dans le DOM en utilisant la fonction DisplayFilterDOM
-  filters.forEach((filter) => {
-    const filterContainer = DisplayFilterDOM(filter.name);
-    // Ajoute le filtre dans le DOM à l'endroit approprié
-    document.getElementById("filters-container").appendChild(filterContainer);
-  });
 
   const allListButtons = document.querySelectorAll(".filter__button");
   const allListDOM = document.querySelectorAll(".filter__list-container");
@@ -126,15 +118,12 @@ const manageFilters = (filteredRecipes) => {
     filterList.innerHTML = "";
     filter.datas.forEach((tag) => {
       const listElement = document.createElement("li");
-      const filterButton = document.createElement("button");
-      filterButton.setAttribute("role", "option");
-      filterButton.setAttribute("id", tag.split(" ").join("")); // Supprime l'espace dans le nom du filtre
-      filterButton.textContent = tag;
-
-      listElement.appendChild(filterButton);
+      listElement.setAttribute("role", "option");
+      listElement.setAttribute("id", tag.split(" ").join("")); // Supprime l'espace dans le nom du filtre
+      listElement.textContent = tag;
       filterList.appendChild(listElement);
 
-      filterButton.addEventListener("click", () => {
+      listElement.addEventListener("click", () => {
         addTag(filter, tag);
       });
     });

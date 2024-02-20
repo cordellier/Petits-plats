@@ -1,0 +1,10 @@
+//** ENVELOPPE D'EVENEMENTS */
+
+@mixin on-event() {
+    &:hover,
+    &:active,
+    &:focus,
+    &:focus-within {
+      @content;
+    }
+  }

@@ -1,0 +1,20 @@
+//** BARRE BE RECHERCHES */
+
+.input {
+  border: none;
+  @include on-event {
+    outline: none;
+  }
+  &-container {
+    .header-cross {
+      width: 20px;
+      .empty-input-button {
+        cursor: pointer;
+        display: none;
+        &--typing {
+          display: block;
+        }
+      }
+    }
+  }
+}

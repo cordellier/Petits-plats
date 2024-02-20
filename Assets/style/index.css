@@ -1,4 +1,5 @@
 @charset "UTF-8";
+/* Configurations */
 /* vendors */
 /**
 Supprimer la marge par défaut
@@ -368,7 +369,8 @@ button {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  padding: 17px 16px;
+  padding: 20px 16px;
+  border-radius: 12px;
 }
 
 .filter__list-container {
@@ -409,6 +411,10 @@ button {
   padding-right: 5px;
 }
 
+#filter-search-ustensils {
+  border: none;
+}
+
 .filter__input {
   height: 35px;
   padding-left: 10px;
@@ -428,8 +434,12 @@ button {
   background-color: #ffd15b;
 }
 
-.input-container .cross-svg {
+.input-container .header-cross {
   width: 20px;
+}
+
+.header-cross img {
+  width: 30px;
 }
 
 .filter__magnifier-svg {
@@ -446,21 +456,6 @@ button {
 #filter-search-appliances,
 #filter-search-ingredients {
   border: none;
-}
-
-.filter__list-items li:before {
-  content: "";
-  position: absolute;
-  top: -10px;
-  bottom: -10px;
-  width: 200px;
-  left: 0;
-  right: 0;
-  background: #ffd15b;
-  z-index: -1;
-  opacity: 0;
-  -webkit-transition: opacity 0.1s linear;
-  transition: opacity 0.1s linear;
 }
 
 @-webkit-keyframes arrowChange {
@@ -492,6 +487,23 @@ button {
             transform: rotate(180deg);
   }
 }
+.input {
+  border: none;
+}
+.input:hover, .input:active, .input:focus, .input:focus-within {
+  outline: none;
+}
+.input-container .header-cross {
+  width: 20px;
+}
+.input-container .header-cross .empty-input-button {
+  cursor: pointer;
+  display: none;
+}
+.input-container .header-cross .empty-input-button--typing {
+  display: block;
+}
+
 .recipe-card {
   background-color: #ffffff;
   border-radius: 21px;
