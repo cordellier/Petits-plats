@@ -20,7 +20,7 @@ const DisplayFilterDOM = (filterItem) => {
         <div class="filter__input-container input-container flex-row" >
           <label for="filter-search-${filterItem.filter}" class="visually-hidden">Rechercher par ${filterItem.filter}</label>
             <input id="filter-search-${filterItem.filter}" class="input" type="search">
-            <div class='cross-svg'>
+            <div class='header-cross'>
                 <button id="empty-filter-${filterItem.filter}" class="empty-input-button">
                     <img src="../../Assets/img/Icon/FilterSearchClose.svg">
                 </button>
