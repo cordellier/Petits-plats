@@ -5,7 +5,7 @@ import { Recipe } from "../Data/data.js";
 import { RenderRecipeCard } from "../View/renderRecipeUI.js";
 import { DisplayFilterDOM } from "../View/renderFilterUI.js";
 import { manageFilters } from "../utils/filters.js";
-// import { manageSearch } from "../utils/SearchInput.js";
+import { manageSearch } from "../utils/SearchInput.js";
 
 /*
 Exécutée lorsque la page est chargée
@@ -103,9 +103,15 @@ Fonction appelée lors du chargement, récupère les données de la base de donn
 const init = () => {
   const datasRecipes = ApiRecipes();
   const { recipes } = datasRecipes.getRecipes();
+
+  if (!window.searchInitialized) {
+    manageSearch(recipes, recipes);
+    window.searchInitialized = true;
+  }
+
   renderRecipes(recipes);
   displayAllFilters(recipes);
-  // manageSearch(recipes, recipes);
+  manageSearch(recipes, recipes);
   renderTotalRecipes(recipes);
 };
 

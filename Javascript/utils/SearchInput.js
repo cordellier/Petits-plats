@@ -1,4 +1,4 @@
-import { renderRecipes, renderTotalRecipes } from "../pages/Index.js";
+import { renderRecipes, renderTotalRecipes } from "../pages/index.js";
 import { filtersQueries } from "./filterQueries.js";
 import { manageFilters } from "./filters.js";
 import { deleted } from "./aideBalise.js";
