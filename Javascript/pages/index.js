@@ -1,11 +1,11 @@
 //**CONTROLE DE LA PAGE D'ACCEUIL */
 
-import { ApiRecipes } from "../Api/ApiRecipes.js";
+import { ApiRecipes } from "../Api/apiRecipes.js";
 import { Recipe } from "../Data/data.js";
 import { RenderRecipeCard } from "../View/renderRecipeUI.js";
 import { DisplayFilterDOM } from "../View/renderFilterUI.js";
 import { manageFilters } from "../utils/filters.js";
-import { manageSearch } from "../utils/SearchInput.js";
+import { manageSearch } from "../utils/searchInput.js";
 
 /*
 Exécutée lorsque la page est chargée
@@ -31,11 +31,46 @@ const renderRecipes = (recipes, inputText) => {
   } else {
     recipesContainer.className = "recipes";
     recipes.forEach((recipe) => {
-      recipe = Recipe(recipe);
       const cardDOM = RenderRecipeCard(recipe);
       recipesContainer.appendChild(cardDOM);
     });
   }
+};
+
+const handleInputSearch = (event) => {
+  let inputText = event.target.value;
+  inputText = manageCaracter(inputText);
+  filterEmpty.classList.add("empty-input-button--typing");
+  if (inputText.length === 0) {
+    filterEmpty.classList.remove("empty-input-button--typing");
+  }
+  if (inputText.length < 3) {
+    updateFilters(allRecipes, allRecipes);
+  }
+  if (inputText.length >= 3) {
+    const filterBy = ["name", "ingredients", "description"];
+    const filteredRecipesBySearch = filtersQueries(
+      filteredRecipes,
+      inputText,
+      filterBy
+    );
+    updateFilters(allRecipes, filteredRecipesBySearch, inputText);
+  }
+};
+
+const initSearchBar = () => {
+  const filterInput = document.getElementById("header-search");
+  const filterEmpty = document.getElementById(`empty-filter-header-search`);
+  // Événement de saisie
+  filterInput.addEventListener("input", (event) => {
+    handleInputSearch(event);
+    // Vide l'entrée lorsqu'on clique sur la croix
+    filterEmpty.addEventListener("click", () => {
+      filterInput.value = "";
+      filterEmpty.classList.remove("empty-input-button--typing");
+      updateFilters(allRecipes, allRecipes);
+    });
+  });
 };
 
 /**
@@ -103,16 +138,11 @@ Fonction appelée lors du chargement, récupère les données de la base de donn
 const init = () => {
   const datasRecipes = ApiRecipes();
   const { recipes } = datasRecipes.getRecipes();
-
-  if (!window.searchInitialized) {
-    manageSearch(recipes, recipes);
-    window.searchInitialized = true;
-  }
-
   renderRecipes(recipes);
   displayAllFilters(recipes);
   manageSearch(recipes, recipes);
   renderTotalRecipes(recipes);
+  initSearchBar();
 };
 
 export { renderRecipes, renderTotalRecipes };

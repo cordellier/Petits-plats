@@ -1,4 +1,4 @@
-import { deleted } from "./aideBalise.js";
+import { manageCaracter } from "./aideBalise.js";
 
 /**
  * Gère la liste des éléments affichés lorsque l'utilisateur tape dans l'entrée pour filtrer par tag
@@ -14,7 +14,7 @@ const manageTags = (filter, manageFilterList) => {
   // Événement de saisie
   filterInput.addEventListener("input", (event) => {
     let inputText = event.target.value;
-    inputText = deleted(inputText);
+    inputText = manageCaracter(inputText);
     filterEmpty.classList.add("empty-input-button--typing");
     if (inputText.length === 0) {
       filterEmpty.classList.remove("empty-input-button--typing");

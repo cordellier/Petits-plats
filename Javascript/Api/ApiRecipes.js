@@ -1,6 +1,6 @@
 //**LIAISON AVEC LA BASE DE DONNEES */
 
-import { recipes } from "../Data/Recipes.js";
+import { recipes } from "../Data/recipes.js";
 
 /**
  * Gère les données de la base de données des recettes

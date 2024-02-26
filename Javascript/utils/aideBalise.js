@@ -12,8 +12,8 @@ const firstLetter = (string) => {
  * @param {string} input
  * @returns {string}
  */
-function deleted(input) {
+function manageCaracter(input) {
   return input.replace(/<[^>]*>/g, "");
 }
 
-export { firstLetter, deleted };
+export { firstLetter, manageCaracter };

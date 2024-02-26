@@ -1,29 +1,33 @@
 //**Gestion des cartes de recettes */
 
+// Fonction pour rendre la liste des ingrédients
+const renderIngredients = (ingredients) => {
+  return (
+    ingredients &&
+    ingredients
+      .map(
+        (ingredient) => `    
+  <li class="flex-col">
+    <span class="recipe-card__ingredient">${ingredient.ingredient}</span>
+    <span class="recipe-card__ingredient-quantity">${
+      ingredient.quantity ? ingredient.quantity : ""
+    } ${ingredient.unit ? ingredient.unit : ""}</span>
+  </li>`
+      )
+      .join("")
+  );
+};
+
 /**
-Fonction qui crée un article pour afficher la carte de recette
-@param {object} recipe
-@returns {html}
-*/
+ * Fonction pour créer un article affichant la carte de recette
+ * @param {object} recipe - L'objet de recette contenant des détails tels que le nom, l'image, le temps, la description et les ingrédients
+ * @returns {html} - L'élément HTML de l'article représentant la carte de recette
+ */
 const RenderRecipeCard = (recipe) => {
   // article container
   const article = document.createElement("article");
   article.className = "recipe-card flex-col";
   const src = `assets/photos/${recipe.image}`;
-  const ingredientsList =
-    recipe.ingredients && Array.isArray(recipe.ingredients)
-      ? recipe.ingredients
-          .map(
-            (ingredient) => `    
-        <li class="flex-col">
-          <span class="recipe-card__ingredient">${ingredient.ingredient}</span>
-          <span class="recipe-card__ingredient-quantity">${
-            ingredient.quantity ? ingredient.quantity : ""
-          } ${ingredient.unit ? ingredient.unit : ""}</span>
-        </li>`
-          )
-          .join("")
-      : "";
   const recipeCard = `
       <img src=${src} alt="${recipe.name}" height="253" width="380">
 
@@ -42,7 +46,7 @@ const RenderRecipeCard = (recipe) => {
           <section class="recipe-card__content-section flex-col">
               <h3 class="recipe-card__subtitle">Ingrédients</h3>
               <ul class="recipe-card__ingredients-list">
-              ${ingredientsList}
+              ${renderIngredients(recipe.ingredients)}
               </ul>
           </section>
       </div>

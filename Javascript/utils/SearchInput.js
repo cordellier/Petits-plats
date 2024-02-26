@@ -1,7 +1,7 @@
 import { renderRecipes, renderTotalRecipes } from "../pages/index.js";
 import { filtersQueries } from "./filterQueries.js";
 import { manageFilters } from "./filters.js";
-import { deleted } from "./aideBalise.js";
+import { manageCaracter } from "./aideBalise.js";
 
 /**
  * Gère la saisie lorsque l'utilisateur tape et permet d'affiche la croix et les recettes correspondantes uniquement après avoir tapé 3 caractères
@@ -14,7 +14,7 @@ const manageSearch = (allRecipes, filteredRecipes) => {
   // Événement de saisie
   filterInput.addEventListener("input", (event) => {
     let inputText = event.target.value;
-    inputText = deleted(inputText);
+    inputText = manageCaracter(inputText);
     filterEmpty.classList.add("empty-input-button--typing");
     if (inputText.length === 0) {
       filterEmpty.classList.remove("empty-input-button--typing");

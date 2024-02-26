@@ -25,7 +25,8 @@ Modèle MVC
 
 # DOCUMENTATIONS
 
-Benchmark des algorithmes : https://jsben.ch/eS8bA
+Benchmark des algorithmes : https://jsben.ch/1dIph
+([Fiche d'investigation de fonctionnalité](Assets/Doc/Fiche_investigation.pdf))
 
 # COMPÉTENCES APPRISES
 
