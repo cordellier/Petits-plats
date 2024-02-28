@@ -13,7 +13,15 @@ Développement d'un algotrithme de recherche en Javascript -> assets/skecth/Les_
 
 Le projet implique le développement du moteur de recherche d'un site de recettes de cuisine pour l'entreprise "Les petits plats". En tant que développeur Front-end freelance, je dois créer deux versions de la fonction de recherche.
 
-# TECHNOLOGIES
+# PROCÉDURE :
+
+Le projet se déroule en trois étapes :
+
+1. Implémentation de l'interface utilisateur
+2. Implémentation des deux algorithmes de recherche
+3. Comparaison des performances des deux algorithmes avec Jsben
+
+# TECHNOLOGIES :
 
 HTML5/CSS3
 Sass
