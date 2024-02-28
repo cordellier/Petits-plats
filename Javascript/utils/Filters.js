@@ -4,6 +4,7 @@ import { filtersQueries, getRecipesElements } from "./filterQueries.js";
 import { renderTag } from "../View/renderTagUI.js";
 import { manageTags } from "./tagInput.js";
 import { renderRecipes } from "../pages/index.js";
+import { renderTotalRecipes } from "../pages/index.js";
 
 // Déclaration des variables à l'extérieur de la fonction
 let filterIngredientsDatas;
