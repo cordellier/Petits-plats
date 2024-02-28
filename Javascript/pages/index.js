@@ -1,11 +1,11 @@
 //**CONTROLE DE LA PAGE D'ACCEUIL */
 
 import { ApiRecipes } from "../Api/apiRecipes.js";
-import { Recipe } from "../Data/data.js";
 import { RenderRecipeCard } from "../View/renderRecipeUI.js";
 import { DisplayFilterDOM } from "../View/renderFilterUI.js";
 import { manageFilters } from "../utils/filters.js";
-import { manageSearch } from "../utils/searchInput.js";
+import { manageSearch } from "../utils/SearchInput.js";
+import { manageCaracter } from "../utils/aideBalise.js";
 
 /*
 Exécutée lorsque la page est chargée
