@@ -8,31 +8,47 @@ import { firstLetter } from "./aideBalise.js";
  * @param {Array} filterBy
  * @returns {Array}
  */
+// Maintient les lettres en minuscules pour éviter les problèmes liés à la casse
 const filtersQueries = (recipes, filterValue, filterBy) => {
-  // Convertit la valeur du filtre en minuscules pour une correspondance insensible à la casse
   const filterValueLowerCase = filterValue.toLowerCase();
-  // Filtrer les recettes en fonction des filtres spécifiés
-  const filteredRecipes = recipes.filter((recipe) => {
-    // Vérifie si au moins l'un des filtres correspond à la recette actuelle
-    // si un filtre correspond, passer à la recette suivante
-    return filterBy.some((filter) => {
-      // si le filtre est un tableau
-      if (filter === "ingredients" || filter === "ustensils") {
-        const elementList = recipe[filter];
-        // Vérifie si au moins un élément de la liste correspond à la valeur filtrée (si c'est le cas, passer à la recette suivante)
-        // 'break' équivalent si vrai
-        return elementList.some((element) => {
-          const elementText =
-            filter === "ingredients" ? element.ingredient : element;
-          // 'break' équivalent si vrai
-          return elementText.toLowerCase().includes(filterValueLowerCase);
-        });
+  const filteredRecipes = [];
+  for (let i = 0; i < recipes.length; i++) {
+    let j = 0;
+    // Parcours des critères de filtrage
+    while (j < filterBy.length) {
+      // Gestion des tableaux dans la recette
+      if (filterBy[j] === "ingredients" || filterBy[j] === "ustensils") {
+        const elementList = recipes[i][filterBy[j]];
+        let k = 0;
+        // Parcours des éléments dans le tableau
+        while (k < elementList.length) {
+          let element = elementList[k];
+          // Si le critère est 'ingredients', on prend seulement l'ingrédient
+          if (filterBy[j] === "ingredients") {
+            element = elementList[k].ingredient;
+          }
+          // Vérification si l'élément contient la valeur de filtrage
+          if (element.toLowerCase().includes(filterValueLowerCase)) {
+            filteredRecipes.push(recipes[i]);
+            // Dès que l'élément de recherche est trouvé dans une recette, on passe à la suivante
+            k = elementList.length;
+            j = filterBy.length;
+          }
+          k++;
+        }
       } else {
-        // Vérifie si l'attribut de recette correspond à la valeur filtrée pour les autres types de filtres
-        return recipe[filter].toLowerCase().includes(filterValueLowerCase);
+        // Vérification si la propriété de la recette contient la valeur de filtrage
+        if (
+          recipes[i][filterBy[j]].toLowerCase().includes(filterValueLowerCase)
+        ) {
+          filteredRecipes.push(recipes[i]);
+          // Dès que l'élément de recherche est trouvé dans une recette, on passe à la suivante
+          j = filterBy.length;
+        }
       }
-    });
-  });
+      j++;
+    }
+  }
   return filteredRecipes;
 };
 

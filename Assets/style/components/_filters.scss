@@ -116,21 +116,57 @@
 }
 
 
-.filter__list-items li::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: transparent;
-  z-index: -1;
-  transition: background-color 0.3s ease;
+.filter__list-items li {
+  position: relative;
+  overflow: visible;
 }
 
-.filter__list-items li:hover::before {
-  background-color: $yellow;
+.filter__list-items li span.cross {
+  float: right;
+  margin-right: 10px;
+  color: $yellow;
+  font-size: 14px;
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+  border: 1px solid black;
+  border-radius: 50%;
+  padding: 4px;
+  background-color: black;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  visibility: hidden;
 }
+
+.filter__list-items li.selected span.cross {
+  visibility: visible; /* La croix est visible uniquement pour les éléments sélectionnés */
+}
+
+.filter__list-items li:hover span.cross {
+  visibility: hidden; /* Masque la croix au survol */
+}
+
+.filter__list-items li:hover,
+.filter__list-items li.selected {
+  cursor: pointer;
+  background-color: $yellow;
+  display: block;
+  width: 120%;
+  padding: 6px;
+  box-sizing: border-box;
+  margin-left: -10%; 
+  font-weight: bold;
+}
+
+.filter__list-items li.selected:hover span.cross {
+  visibility: visible; /* Si l'élément est à la fois sélectionné et survolé, la croix reste visible */
+}
+
+
+
 
 .input-container .header-cross {
   width: 20px;

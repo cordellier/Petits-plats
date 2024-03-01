@@ -1,6 +1,5 @@
 // Import des modules nécessaires
 import { filtersQueries, getRecipesElements } from "./filterQueries.js";
-// import { renderTotalRecipes, renderRecipes } from "../pages/Index.js";
 import { renderTag } from "../View/renderTagUI.js";
 import { manageTags } from "./tagInput.js";
 import { renderRecipes } from "../pages/index.js";
@@ -10,6 +9,8 @@ import { renderTotalRecipes } from "../pages/index.js";
 let filterIngredientsDatas;
 let filterAppliancesDatas;
 let filterUstensilsDatas;
+// Déclarez ceci en dehors de la fonction manageFilterList
+let selectedItems = [];
 
 /**
  * Gère les filtres en fonction de la liste des recettes (filtrées ou non)
@@ -87,6 +88,15 @@ const manageFilters = (filteredRecipes) => {
     changeFiltersDatas(recipesList);
   };
 
+  // Ajoutez une nouvelle fonction pour gérer la suppression de l'élément sélectionné
+  const handleSelectedItemClick = (listElement, tag, filterName) => {
+    listElement.classList.remove("selected");
+    const crossElement = listElement.querySelector(".cross");
+    crossElement.style.visibility = "hidden";
+    removeTag(filterName, tag);
+    manageSelectedItems(listElement, tag, filterName);
+  };
+
   /**
    * Gère l'ouverture/fermeture de la liste des filtres et la classe pour les animations CSS
    * Ferme le filtre ouvert lorsque l'on ouvre un autre
@@ -118,17 +128,58 @@ const manageFilters = (filteredRecipes) => {
   const manageFilterList = (filter) => {
     const filterList = document.getElementById(`${filter.name}-list-items`);
     filterList.innerHTML = "";
+
     filter.datas.forEach((tag) => {
       const listElement = document.createElement("li");
       listElement.setAttribute("role", "option");
-      listElement.setAttribute("id", tag.split(" ").join("")); // Supprime l'espace dans le nom du filtre
       listElement.textContent = tag;
       filterList.appendChild(listElement);
 
-      listElement.addEventListener("click", () => {
+      const crossElement = document.createElement("span");
+      crossElement.className = "cross";
+      crossElement.innerHTML = "&times;";
+      listElement.appendChild(crossElement);
+
+      // Ajouter un gestionnaire d'événements au clic sur un élément de la liste
+      listElement.addEventListener("click", (event) => {
+        listElement.classList.toggle("selected");
+        crossElement.style.visibility = listElement.classList.contains(
+          "selected"
+        )
+          ? "visible"
+          : "hidden";
+        manageSelectedItems(listElement, tag, filter.name);
         addTag(filter, tag);
+        event.stopPropagation();
       });
+
+      // Si l'élément est déjà sélectionné, appliquer le style
+      if (
+        selectedItems.some(
+          (item) => item.tag === tag && item.filterName === filter.name
+        )
+      ) {
+        listElement.classList.add("selected");
+        crossElement.style.visibility = "visible";
+      }
     });
+  };
+
+  // Ajoutez une fonction pour gérer les éléments sélectionnés
+  const manageSelectedItems = (listElement, tag, filterName) => {
+    const selectedItemIndex = selectedItems.findIndex(
+      (item) => item.tag === tag && item.filterName === filterName
+    );
+
+    if (listElement.classList.contains("selected")) {
+      if (selectedItemIndex === -1) {
+        selectedItems.push({ tag, filterName });
+      }
+    } else {
+      if (selectedItemIndex !== -1) {
+        selectedItems.splice(selectedItemIndex, 1);
+      }
+    }
   };
 
   /**
