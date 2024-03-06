@@ -8,8 +8,8 @@ import { firstLetter } from "./aideBalise.js";
  * @param {Array} filterBy
  * @returns {Array}
  */
-// Maintient les lettres en minuscules pour éviter les problèmes liés à la casse
 const filtersQueries = (recipes, filterValue, filterBy) => {
+  // Convertit la valeur du filtre en minuscules pour une correspondance insensible à la casse
   const filterValueLowerCase = filterValue.toLowerCase();
   const filteredRecipes = [];
   for (let i = 0; i < recipes.length; i++) {
