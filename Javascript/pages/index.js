@@ -1,11 +1,12 @@
 //**CONTROLE DE LA PAGE D'ACCEUIL */
 
-import { ApiRecipes } from "../Api/apiRecipes.js";
+import { ApiRecipes } from "../Api/ApiRecipes.js";
 import { RenderRecipeCard } from "../View/renderRecipeUI.js";
 import { DisplayFilterDOM } from "../View/renderFilterUI.js";
-import { manageFilters } from "../utils/filters.js";
-import { manageSearch } from "../utils/SearchInput.js";
+import { manageFilters } from "../utils/Filters.js";
+import { manageSearch, updateFilters } from "../utils/SearchInput.js";
 import { manageCaracter } from "../utils/aideBalise.js";
+import { filtersQueries } from "../utils/filterQueries.js";
 
 /*
 Exécutée lorsque la page est chargée
@@ -37,9 +38,10 @@ const renderRecipes = (recipes, inputText) => {
   }
 };
 
-const handleInputSearch = (event) => {
+const handleInputSearch = (event, allRecipes) => {
   let inputText = event.target.value;
   inputText = manageCaracter(inputText);
+  const filterEmpty = document.getElementById(`empty-filter-header-search`);
   filterEmpty.classList.add("empty-input-button--typing");
   if (inputText.length === 0) {
     filterEmpty.classList.remove("empty-input-button--typing");
@@ -50,7 +52,7 @@ const handleInputSearch = (event) => {
   if (inputText.length >= 3) {
     const filterBy = ["name", "ingredients", "description"];
     const filteredRecipesBySearch = filtersQueries(
-      filteredRecipes,
+      allRecipes,
       inputText,
       filterBy
     );
@@ -58,12 +60,12 @@ const handleInputSearch = (event) => {
   }
 };
 
-const initSearchBar = () => {
+const initSearchBar = (allRecipes) => {
   const filterInput = document.getElementById("header-search");
   const filterEmpty = document.getElementById(`empty-filter-header-search`);
   // Événement de saisie
   filterInput.addEventListener("input", (event) => {
-    handleInputSearch(event);
+    handleInputSearch(event, allRecipes);
     // Vide l'entrée lorsqu'on clique sur la croix
     filterEmpty.addEventListener("click", () => {
       filterInput.value = "";
@@ -142,7 +144,7 @@ const init = () => {
   displayAllFilters(recipes);
   manageSearch(recipes, recipes);
   renderTotalRecipes(recipes);
-  initSearchBar();
+  initSearchBar(recipes);
 };
 
 export { renderRecipes, renderTotalRecipes };

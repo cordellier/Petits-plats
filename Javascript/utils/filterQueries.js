@@ -3,9 +3,9 @@ import { firstLetter } from "./aideBalise.js";
 /**
  * Gère la requête en fonction de la valeur de filtre et du filtre par (peut être le nom, la description, les ingrédients, ...)
  * Barre de recherche + filtres avancés
- * @param {Array} recipes
+ * @param {Array} recipes - liste des recettes à filtrer. Exemple [{a:value}, {a:value}]
  * @param {string} filterValue
- * @param {Array} filterBy
+ * @param {Array} filterBy - tableau des critères de filtre. Exemple : ['ingredient', 'appliance', 'ustensile']
  * @returns {Array}
  */
 const filtersQueries = (recipes, filterValue, filterBy) => {

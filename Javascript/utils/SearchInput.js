@@ -53,4 +53,4 @@ const updateFilters = (originalList, filteredList, inputText) => {
   renderTotalRecipes(filteredList);
 };
 
-export { manageSearch };
+export { manageSearch, updateFilters };
