@@ -17,8 +17,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
 /**
 Fonction qui récupère la div contenant toutes les recettes et les affichent
-@param {Array} recipes
-@param {string} inputText
+@param {Array} recipes - Liste des recettes à afficher
+@param {string} inputText - Texte de recherche saisi par l'utilisateur
 */
 const renderRecipes = (recipes, inputText) => {
   const recipesContainer = document.getElementById("recipes");
