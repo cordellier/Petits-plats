@@ -5,8 +5,8 @@ import { manageCaracter } from "./aideBalise.js";
 
 /**
  * Gère la saisie lorsque l'utilisateur tape et permet d'affiche la croix et les recettes correspondantes uniquement après avoir tapé 3 caractères
- * @param {Array} allRecipes
- * @param {Array} filteredRecipes
+ * @param {Array} allRecipes - La liste de toutes les recettes disponibles sur votre site.
+ * @param {Array} filteredRecipes -  La liste des recettes déjà filtrées selon d'autres critères.
  */
 const manageSearch = (allRecipes, filteredRecipes) => {
   const filterInput = document.getElementById("header-search");
