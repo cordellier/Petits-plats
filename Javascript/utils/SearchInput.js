@@ -42,9 +42,9 @@ const manageSearch = (allRecipes, filteredRecipes) => {
 
 /**
  * Régénère la vue des recettes avec les filtres appropriés
- * @param {Array} originalList
- * @param {Array} filteredList
- * @param {string} inputText
+ * @param {Array} originalList - La liste originale de toutes les recettes disponibles sur votre site.
+ * @param {Array} filteredList - La liste des recettes filtrées selon les critères de recherche.
+ * @param {string} inputText - Le texte saisi par l'utilisateur dans la barre de recherche.
  */
 const updateFilters = (originalList, filteredList, inputText) => {
   renderRecipes(filteredList, inputText);
