@@ -40,8 +40,8 @@ const filtersQueries = (recipes, filterValue, filterBy) => {
 
 /**
  * Obtient tous les éléments (ingrédients, appareils, ustensiles, ...) des recettes
- * @param {Array} recipesList
- * @param {string} filterBy
+ * @param {Array} recipesList - La liste des recettes à partir de laquelle récupérer les éléments.
+ * @param {string} filterBy - Le type d'éléments à récupérer (ingrédients, appareils ou ustensiles).
  * @returns
  */
 const getRecipesElements = (recipesList, filterBy) => {
